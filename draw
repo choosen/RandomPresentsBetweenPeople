@@ -2,5 +2,5 @@
 require './random_presents_between_people.rb'
 require './draw_associations_presenter.rb'
 
-result = RandomPresentsBetweenPeople.new(ARGV).draw
+result = RandomPresentsBetweenPeople.new(ARGV.length).draw
 DrawAssociationsPresenter.print(result, ARGV)
