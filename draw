@@ -1,13 +1,6 @@
 #!/usr/bin/env ruby
 require './random_presents_between_people.rb'
+require './draw_associations_presenter.rb'
 
-def print_results(results)
-  puts '---------------------------------------------------------------'
-  results.each_with_index do |assignment, index|
-    puts "#{ARGV[index]} gives gift to #{ARGV[assignment]}"
-  end
-  puts '---------------------------------------------------------------'
-end
-
-results = RandomPresentsBetweenPeople.new(ARGV).draw
-print_results(results)
+result = RandomPresentsBetweenPeople.new(ARGV).draw
+DrawAssociationsPresenter.print(result, ARGV)

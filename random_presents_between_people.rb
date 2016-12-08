@@ -3,7 +3,9 @@
 class RandomPresentsBetweenPeople
   def initialize(parameters)
     @names = parameters
-    raise 'Too little names for suffiecient with requirements for draw. Maybe you missed space between names?' if @names.count < 3
+    return if @names.count > 2
+    raise 'Too little names for suffiecient with requirements for draw. ' \
+             'Maybe you missed space between names?'
   end
 
   def draw
@@ -25,17 +27,17 @@ class RandomPresentsBetweenPeople
   end
 
   def check_all_conditions(combination)
-    nobody_gives_himself(combination) || nobody_gives_each_other(combination)
+    anybody_gives_himself?(combination) || anybody_gives_each_other?(combination)
   end
 
-  def nobody_gives_himself(combination)
+  def anybody_gives_himself?(combination)
     combination.each_with_index do |entry, index|
       return true if index == entry
     end
     false
   end
 
-  def nobody_gives_each_other(combination)
+  def anybody_gives_each_other?(combination)
     combination.each_with_index do |entry, index|
       return true if combination[index] == entry && combination[entry] == index
     end
