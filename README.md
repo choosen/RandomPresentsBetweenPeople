@@ -6,4 +6,4 @@ nobody will give himself a present and eatch other with somebody.
 
 ## How to run script
 * in terminal cd (*ChangeDirectory*) to project directory
-* type in console `./draw`
+* type in console `./draw some,names,splited,by,comma`
