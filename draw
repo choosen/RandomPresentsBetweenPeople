@@ -5,6 +5,7 @@
 class RandomPresentsBetweenPeople
   def initialize(names_separated_with_coma)
     @names = names_separated_with_coma.split(',')
+    raise 'Too little names for suffiecient with requirements for draw. Maybe you missed the , between names?' if @names.count < 3
   end
 
   def print_results
@@ -27,14 +28,14 @@ class RandomPresentsBetweenPeople
   end
 
   def correct_combinations
-    return [] if @names.empty?
+    return [] if @names.empty? || @names.count < 3
     all_combinations.reject do |combination|
       check_all_conditions(combination)
     end
   end
 
   def check_all_conditions(combination)
-    nobody_gives_himself(combination) && nobody_gives_each_other(combination)
+    nobody_gives_himself(combination) || nobody_gives_each_other(combination)
   end
 
   def nobody_gives_himself(combination)
@@ -52,4 +53,4 @@ class RandomPresentsBetweenPeople
   end
 end
 
-RandomPresentsBetweenPeople.new('Adam,Piotr,Wojtek,Łukasz,Mama').print_results
+RandomPresentsBetweenPeople.new(ARGV[0]).print_results
